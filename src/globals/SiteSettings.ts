@@ -1,4 +1,4 @@
-import { GlobalConfig } from "payload";
+import type { GlobalConfig } from "payload";
 
 
 export const SiteSettings:GlobalConfig  = {
@@ -33,7 +33,7 @@ export const SiteSettings:GlobalConfig  = {
                         {
                             name : "emailAddress",
                             label : "Email Address",
-                            type : "text"
+                            type : "email"
                         }
                     ]
                 },{

@@ -69,6 +69,12 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    offerings: Offering;
+    features: Feature;
+    apps: App;
+    'integrated-solutions': IntegratedSolution;
+    industries: Industry;
+    'contact-submission': ContactSubmission;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +84,12 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    offerings: OfferingsSelect<false> | OfferingsSelect<true>;
+    features: FeaturesSelect<false> | FeaturesSelect<true>;
+    apps: AppsSelect<false> | AppsSelect<true>;
+    'integrated-solutions': IntegratedSolutionsSelect<false> | IntegratedSolutionsSelect<true>;
+    industries: IndustriesSelect<false> | IndustriesSelect<true>;
+    'contact-submission': ContactSubmissionSelect<false> | ContactSubmissionSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -90,10 +102,14 @@ export interface Config {
   globals: {
     header: Header;
     'site-settings': SiteSetting;
+    'home-page': HomePage;
+    'contact-page': ContactPage;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'home-page': HomePageSelect<false> | HomePageSelect<true>;
+    'contact-page': ContactPageSelect<false> | ContactPageSelect<true>;
   };
   locale: null;
   widgets: {
@@ -169,6 +185,90 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "offerings".
+ */
+export interface Offering {
+  id: number;
+  name: string;
+  slug: string;
+  image?: (number | null) | Media;
+  order?: number | null;
+  shortDescription?: string | null;
+  features?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "features".
+ */
+export interface Feature {
+  id: number;
+  title: string;
+  order?: number | null;
+  description: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "apps".
+ */
+export interface App {
+  id: number;
+  name: string;
+  order?: number | null;
+  icon?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "integrated-solutions".
+ */
+export interface IntegratedSolution {
+  id: number;
+  title: string;
+  image?: (number | null) | Media;
+  description: string;
+  ctaText?: string | null;
+  ctaLink?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "industries".
+ */
+export interface Industry {
+  id: number;
+  name: string;
+  order?: number | null;
+  icon?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submission".
+ */
+export interface ContactSubmission {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string | null;
+  message: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -198,6 +298,30 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'offerings';
+        value: number | Offering;
+      } | null)
+    | ({
+        relationTo: 'features';
+        value: number | Feature;
+      } | null)
+    | ({
+        relationTo: 'apps';
+        value: number | App;
+      } | null)
+    | ({
+        relationTo: 'integrated-solutions';
+        value: number | IntegratedSolution;
+      } | null)
+    | ({
+        relationTo: 'industries';
+        value: number | Industry;
+      } | null)
+    | ({
+        relationTo: 'contact-submission';
+        value: number | ContactSubmission;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -280,6 +404,84 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "offerings_select".
+ */
+export interface OfferingsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  image?: T;
+  order?: T;
+  shortDescription?: T;
+  features?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "features_select".
+ */
+export interface FeaturesSelect<T extends boolean = true> {
+  title?: T;
+  order?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "apps_select".
+ */
+export interface AppsSelect<T extends boolean = true> {
+  name?: T;
+  order?: T;
+  icon?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "integrated-solutions_select".
+ */
+export interface IntegratedSolutionsSelect<T extends boolean = true> {
+  title?: T;
+  image?: T;
+  description?: T;
+  ctaText?: T;
+  ctaLink?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "industries_select".
+ */
+export interface IndustriesSelect<T extends boolean = true> {
+  name?: T;
+  order?: T;
+  icon?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submission_select".
+ */
+export interface ContactSubmissionSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  email?: T;
+  phone?: T;
+  message?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -367,6 +569,55 @@ export interface SiteSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page".
+ */
+export interface HomePage {
+  id: number;
+  heroTitle: string;
+  heroDescription: string;
+  backgroundImage?: (number | null) | Media;
+  ctaButtonText?: string | null;
+  ctaButtonLink?: string | null;
+  introTitle: string;
+  introDescription: string;
+  sectionTitle: string;
+  sectionDescription?:
+    | {
+        paragraph?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  featuresTitle: string;
+  industriesTitle: string;
+  solutionsTitle?: string | null;
+  appsTitle: string;
+  ctaTitle: string;
+  ctaDescription?: string | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
+  promoImage1?: (number | null) | Media;
+  promoImage2?: (number | null) | Media;
+  promoImage3?: (number | null) | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-page".
+ */
+export interface ContactPage {
+  id: number;
+  heroTitle: string;
+  heroDescription?: string | null;
+  callUsLabel?: string | null;
+  emailUsLabel?: string | null;
+  infoBoxText?: string | null;
+  formSuccessMessage?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -405,6 +656,55 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   defaultMetaDescription?: T;
   openGraphImage?: T;
   favicon?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page_select".
+ */
+export interface HomePageSelect<T extends boolean = true> {
+  heroTitle?: T;
+  heroDescription?: T;
+  backgroundImage?: T;
+  ctaButtonText?: T;
+  ctaButtonLink?: T;
+  introTitle?: T;
+  introDescription?: T;
+  sectionTitle?: T;
+  sectionDescription?:
+    | T
+    | {
+        paragraph?: T;
+        id?: T;
+      };
+  featuresTitle?: T;
+  industriesTitle?: T;
+  solutionsTitle?: T;
+  appsTitle?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  promoImage1?: T;
+  promoImage2?: T;
+  promoImage3?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-page_select".
+ */
+export interface ContactPageSelect<T extends boolean = true> {
+  heroTitle?: T;
+  heroDescription?: T;
+  callUsLabel?: T;
+  emailUsLabel?: T;
+  infoBoxText?: T;
+  formSuccessMessage?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
