@@ -48,7 +48,7 @@ export const HomePage: GlobalConfig = {
             {
               name: 'introTitle',
               label: 'Title',
-              type: 'text',
+              type: 'textarea',
               required: true,
             },
             {

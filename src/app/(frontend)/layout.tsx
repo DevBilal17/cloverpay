@@ -1,9 +1,12 @@
 import React from 'react'
 import './styles.css'
+import Header from '@/components/Layouts/Header'
+import Navbar from '@/components/Layouts/Navbar'
+import Footer from '@/components/Layouts/Footer'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  title: 'Point-of-Sale System',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
@@ -12,7 +15,11 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <main>{children}</main>
+        <main>
+          <Header />
+          {children}
+          <Footer />
+        </main>
       </body>
     </html>
   )
