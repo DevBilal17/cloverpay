@@ -1,9 +1,17 @@
+import { revalidateSection } from '@/lib/revalidate'
 import type { GlobalConfig } from 'payload'
 
 export const HomePage: GlobalConfig = {
   slug: 'home-page',
   admin: {
     group: 'Pages',
+  },
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidateSection('homePage')
+      },
+    ],
   },
   fields: [
     {
@@ -188,6 +196,13 @@ export const ContactPage: GlobalConfig = {
   slug: 'contact-page',
   admin: {
     group: 'Pages',
+  },
+  hooks: {
+    afterChange: [
+      async () => {
+        await revalidateSection('contactPage')
+      },
+    ],
   },
   fields: [
     {

@@ -1,3 +1,4 @@
+import { revalidateSection } from "@/lib/revalidate";
 import type { GlobalConfig } from "payload";
 
 
@@ -6,6 +7,13 @@ export const SiteSettings:GlobalConfig  = {
     admin : {
         group : "Settings"
     },    
+    hooks: {
+  afterChange: [
+    async () => {
+      await revalidateSection("siteSettings");
+    },
+  ],
+},
     fields : [
         {
             type : "tabs",

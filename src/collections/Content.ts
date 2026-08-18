@@ -1,3 +1,4 @@
+import { revalidateSection } from '@/lib/revalidate';
 import { CollectionConfig } from 'payload'
 
 export const Offerings: CollectionConfig = {
@@ -54,6 +55,19 @@ export const Offerings: CollectionConfig = {
       ],
     },
   ],
+  hooks: {
+  afterChange: [
+    async () => {
+      await revalidateSection("offerings");
+    },
+  ],
+
+  afterDelete: [
+    async () => {
+      await revalidateSection("offerings");
+    },
+  ],
+},
 }
 
 export const Features: CollectionConfig = {
@@ -62,6 +76,19 @@ export const Features: CollectionConfig = {
     group: 'Content',
     useAsTitle : "title"
   },
+  hooks: {
+  afterChange: [
+    async () => {
+      await revalidateSection("features");
+    },
+  ],
+
+  afterDelete: [
+    async () => {
+      await revalidateSection("features");
+    },
+  ],
+},
   fields: [
     {
       name: 'title',
@@ -89,6 +116,19 @@ export const Industries: CollectionConfig = {
     group: 'Content',
     useAsTitle : "name"
   },
+  hooks: {
+  afterChange: [
+    async () => {
+      await revalidateSection("industries");
+    },
+  ],
+
+  afterDelete: [
+    async () => {
+      await revalidateSection("industries");
+    },
+  ],
+},
   fields: [
     {
       name: 'name',
@@ -117,6 +157,19 @@ export const Apps: CollectionConfig = {
     group: 'Content',
     useAsTitle : "name"
   },
+  hooks: {
+  afterChange: [
+    async () => {
+      await revalidateSection("apps");
+    },
+  ],
+
+  afterDelete: [
+    async () => {
+      await revalidateSection("apps");
+    },
+  ],
+},
   fields: [
     {
       name: 'name',
@@ -144,6 +197,19 @@ export const IntegratedSolutions: CollectionConfig = {
     group: 'Content',
     useAsTitle : "title"
   },
+  hooks: {
+  afterChange: [
+    async () => {
+      await revalidateSection("integratedSolutions");
+    },
+  ],
+
+  afterDelete: [
+    async () => {
+      await revalidateSection("integratedSolutions");
+    },
+  ],
+},
   fields: [
     {
       name: 'title',

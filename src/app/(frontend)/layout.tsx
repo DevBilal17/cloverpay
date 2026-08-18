@@ -1,17 +1,29 @@
 import React from 'react'
 import './styles.css'
 import Header from '@/components/Layouts/Header'
-import Navbar from '@/components/Layouts/Navbar'
 import Footer from '@/components/Layouts/Footer'
+import { getSiteSettings } from '@/lib/getSiteSettings'
+import type { Metadata } from 'next'
 
-export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Point-of-Sale System',
+export async function generateMetadata(): Promise<Metadata> {
+  const { favicon } = await getSiteSettings()
+
+  return {
+    title: 'Point-of-Sale System',
+    description:
+      'Scalable and customizable point-of-sale solutions designed to help your business operate efficiently and securely.',
+
+    icons: {
+      icon: favicon?.url,
+    },
+  }
 }
 
-export default async function RootLayout(props: { children: React.ReactNode }) {
-  const { children } = props
-
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body>

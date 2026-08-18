@@ -27,7 +27,7 @@ const Navbar = async () => {
         {navigationItems?.map((item, index) => {
           return (
             <>
-              {item.hasDropdown && <DropDown item={item}  />}
+              {item.hasDropdown && <DropDown key={item.id} item={item}  />}
               {item.isCTA && <Link className='cta-button' key={item.id} href={item.href}>{item.label}</Link>}
             </>
           )

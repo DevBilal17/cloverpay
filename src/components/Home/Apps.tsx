@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 
 const Apps = async () => {
-    const {appsTitle} = await getHomePage()
+  const { appsTitle } = await getHomePage()
   const apps = await getApps()
   return (
     <section className="py-16 sm:py-24 bg-gray-50 px-4 sm:px-6">
@@ -15,9 +15,16 @@ const Apps = async () => {
             <div key={app.id} className="flex flex-col items-center gap-3">
               <div className="w-[56px] h-[56px] sm:w-[72px] sm:h-[72px] relative rounded-xl bg-white border border-gray-200 flex items-center justify-center">
                 <Image
+                  // @ts-ignore
                   src={app.icon?.url}
+                  // @ts-ignore
+
                   alt={app.icon?.alt}
+                  // @ts-ignore
+
                   width={app.icon?.width}
+                  // @ts-ignore
+
                   height={app.icon?.height}
                   className="w-8 h-8 sm:w-10 sm:h-10"
                 />

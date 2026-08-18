@@ -15,7 +15,7 @@ type DropDownItems = {
  href : string
 }
 const DropDown = ({item}:{item:Item}) => {
-  console.log(item)
+
   return (
     <div className='relative group'>
       <span className='flex items-center gap-1 cursor-pointer hover:text-[#278206] transition'>

@@ -1,3 +1,4 @@
+import { revalidateSection } from '@/lib/revalidate';
 import { GlobalConfig } from 'payload'
 
 export const Header: GlobalConfig = {
@@ -5,6 +6,13 @@ export const Header: GlobalConfig = {
       admin : {
         group : "Settings"
     }, 
+    hooks: {
+  afterChange: [
+    async () => {
+      await revalidateSection("header");
+    },
+  ],
+},
   fields: [
     {
       name: 'navigationItems',

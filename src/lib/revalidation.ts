@@ -1,0 +1,15 @@
+export const revalidationMatrix = {
+  homePage: ['/'],
+  contactPage: ['/contact'],
+  header: ['/', '/contact'],
+  siteSettings: ['/', '/contact'],
+  footer: ['/', '/contact'],
+  hero: ['/'],
+  intro: ['/'],
+  offerings: ['/'],
+  features: ['/'],
+  integratedSolutions: ['/'],
+  industries : ["/"],
+  apps: ['/'],
+  cta: ['/'],
+}
